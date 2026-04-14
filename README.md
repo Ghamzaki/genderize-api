@@ -53,20 +53,14 @@ All errors follow:
 
 ## Deploy to Vercel
 
-### Option 1 — Vercel CLI (recommended)
-```bash
-npm i -g vercel
-vercel        # follow prompts, links your GitHub repo
-vercel --prod # promote to production
-```
-
-### Option 2 — Vercel Dashboard
-1. Push this repo to GitHub
+###  Vercel Dashboard
+1. Push code repo to GitHub
 2. Go to [vercel.com](https://vercel.com) → New Project → Import your repo
 3. Leave all settings as default — `vercel.json` handles everything
 4. Click **Deploy**
+5. vercel will build and give you a live URL
 
-Your live URL will be: `https://your-project.vercel.app`
+Project live URL is: `https://genderize-api-iota.vercel.app`
 
 ## Run Locally
 
@@ -94,3 +88,7 @@ curl "$BASE/api/classify?name="
 # Unknown name (may trigger 422 edge case)
 curl "$BASE/api/classify?name=xyzzyabc123"
 ```
+
+Author:
+Github: @Ghamzaki
+email: uthmanghamzaki@gmail.com

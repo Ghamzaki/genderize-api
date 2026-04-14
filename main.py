@@ -1,3 +1,14 @@
+"""
+main.py — Genderize Name API
+ 
+A FastAPI application with a single GET endpoint that:
+1. Accepts a name as a query parameter
+2. Calls the external Genderize.io API to predict gender
+3. Processes the response
+4. Returns a structured JSON result
+ 
+Deployed as a serverless function on Vercel.
+"""
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -7,8 +18,10 @@ from datetime import datetime, timezone
 from mangum import Mangum
 import httpx
 
+# Initialize FastAPI app
 app = FastAPI()
 
+# CORS middleware to allow requests from any origin (for testing purposes)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,9 +29,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# External API URL
 GENDERIZE_URL = "https://api.genderize.io"
 
 
+# Custom exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request: Request, exc: StarletteHTTPException):
     return JSONResponse(
@@ -26,7 +41,7 @@ async def custom_http_exception_handler(request: Request, exc: StarletteHTTPExce
         content={"status": "error", "message": exc.detail},
     )
 
-
+# API endpoint
 @app.get("/api/classify")
 async def classify(name: str = Query(default=None)):
     # 400: missing or empty
