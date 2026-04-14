@@ -74,7 +74,7 @@ uvicorn main:app --reload --port 8000
 ## Test Cases
 
 ```bash
-BASE=https://your-project.vercel.app
+BASE=https://genderize-api-iota.vercel.app
 
 # Success
 curl "$BASE/api/classify?name=james"
